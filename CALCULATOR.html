@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculadora</title>
+    <style>
+      /* Estilos para centralizar e aumentar a calculadora */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      
+      .calculadora {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        gap: 10px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f2f2f2;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        font-size: 24px;
+        width: 300px;
+        height: 400px;
+      }
+      
+      .calculadora input {
+        grid-column: 1 / span 4;
+        text-align: right;
+        font-size: 36px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      
+      .calculadora button {
+        background-color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+      }
+      
+      .calculadora button:hover {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculadora">
+      <input id="resultado" type="text" readonly>
+      <button onclick="adicionar('1')">1</button>
+      <button onclick="adicionar('2')">2</button>
+      <button onclick="adicionar('3')">3</button>
+      <button onclick="adicionar('+')">+</button>
+      <button onclick="adicionar('4')">4</button>
+      <button onclick="adicionar('5')">5</button>
+      <button onclick="adicionar('6')">6</button>
+      <button onclick="adicionar('-')">-</button>
+      <button onclick="adicionar('7')">7</button>
+      <button onclick="adicionar('8')">8</button>
+      <button onclick="adicionar('9')">9</button>
+      <button onclick="adicionar('*')">*</button>
+      <button onclick="adicionar('0')">0</button>
+      <button onclick="adicionar('.')">.</button>
+      <button onclick="calcular()">=</button>
+      <button onclick="adicionar('/')">/</button>
+      <button onclick="limpar()">Limpar</button>
+    </div>
+    <script>
+      let expressao = '';
+      let resultado = document.getElementById('resultado');
+      
+      function adicionar(valor) {
+        expressao = expressao + valor;
+        resultado.value = expressao;
+      }
+      
+      function calcular() {
+        try {
+          let resultadoFinal = eval(expressao);
+          expressao = resultadoFinal.toString();
+          resultado.value = resultadoFinal;
+        } catch (error) {
+          resultado.value = 'Erro';
+        }
+      }
+      
+      function limpar() {
+        expressao = '';
+        resultado.value = '';
+      }
+    </script>
+  </body>
+</html>
